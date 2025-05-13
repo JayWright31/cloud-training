@@ -1,0 +1,43 @@
+<div class="todo-card">
+  <div class="todo-description" [class.completed]="todo.completed">
+    <span *ngIf="!isEditing">{{ todo.title }}</span>
+    <input
+      *ngIf="isEditing"
+      [(ngModel)]="editedTitle"
+      (keydown.enter)="onSubmitEdit()"
+      (keydown.escape)="onCancelEdit()"
+      #editInput
+    />
+  </div>
+
+  <div class="todo-actions">
+    <button
+      *ngIf="!isEditing"
+      class="icon"
+      [ngClass]="todo.completed ? 'blue' : 'green'"
+      (click)="onToggleComplete()"
+    >
+      <fa-icon [icon]="todo.completed ? faUndo : faCheck"></fa-icon>
+    </button>
+
+    <button
+      *ngIf="!todo.completed && !isEditing"
+      class="icon yellow"
+      (click)="onEdit()"
+    >
+      <fa-icon [icon]="faEdit"></fa-icon>
+    </button>
+
+    <button *ngIf="isEditing" class="icon green" (click)="onSubmitEdit()">
+      <fa-icon [icon]="faSave"></fa-icon>
+    </button>
+
+    <button *ngIf="isEditing" class="icon red" (click)="onCancelEdit()">
+      <fa-icon [icon]="faTimes"></fa-icon>
+    </button>
+
+    <button *ngIf="!isEditing" class="icon red" (click)="onDelete()">
+      <fa-icon [icon]="faTrash"></fa-icon>
+    </button>
+  </div>
+</div>

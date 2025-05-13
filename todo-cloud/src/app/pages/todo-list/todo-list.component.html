@@ -1,1 +1,25 @@
-<p>todo-list works!</p>
+<div class="container">
+  <h1>{{ userName }}'s Todos</h1>
+  <div class="card">
+    <div class="card-header">
+      <label>Create a new todo</label>
+    </div>
+    <div class="input-row">
+      <input [(ngModel)]="todoTitle" type="text" placeholder="Add your todo" />
+      <button (click)="addTodo()">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="todo-list">
+    <app-todo-item
+      *ngFor="let todo of todos"
+      [todo]="todo"
+      (completeToggled)="handleToggleComplete($event)"
+      (editSubmitted)="handleEdit($event)"
+      (deleteClicked)="handleDelete($event)"
+    >
+    </app-todo-item>
+  </div>
+</div>

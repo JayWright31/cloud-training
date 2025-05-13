@@ -2,7 +2,6 @@ package com.scottlogic.cloud_training.controllers;
 
 import com.scottlogic.cloud_training.dtos.CreateTodoDTO;
 import com.scottlogic.cloud_training.dtos.TodoResponseDTO;
-import com.scottlogic.cloud_training.dtos.UpdateTodoDTO;
 import com.scottlogic.cloud_training.entities.Todo;
 import com.scottlogic.cloud_training.services.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -39,8 +38,19 @@ public class TodoController {
         return new ResponseEntity<>(todoService.createTodo(dto), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{todoId}")
-    public ResponseEntity<Todo> updateTodo(@PathVariable UUID todoId, @RequestBody UpdateTodoDTO dto) {
-        return new ResponseEntity<>(todoService.updateTodo(todoId, dto), HttpStatus.CREATED);
+    @PatchMapping("/{todoId}{title}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable UUID todoId, @RequestParam String title) {
+        return new ResponseEntity<>(todoService.updateTodoTitle(todoId, title), HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/complete/{todoId}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable UUID todoId, @RequestParam boolean complete) {
+        return new ResponseEntity<>(todoService.updateTodoComplete(todoId, complete), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{todoId}")
+    public ResponseEntity<?> deleteTodo(@PathVariable UUID todoId) {
+        todoService.deleteTodo(todoId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -2,7 +2,6 @@ package com.scottlogic.cloud_training.services;
 
 import com.scottlogic.cloud_training.dtos.CreateTodoDTO;
 import com.scottlogic.cloud_training.dtos.TodoResponseDTO;
-import com.scottlogic.cloud_training.dtos.UpdateTodoDTO;
 import com.scottlogic.cloud_training.entities.Todo;
 import com.scottlogic.cloud_training.entities.User;
 import com.scottlogic.cloud_training.exceptions.TodoNotFoundException;
@@ -27,10 +26,6 @@ public class TodoService {
     public List<TodoResponseDTO> getUserTodos(UUID userId) {
         List<Todo> todos = todoRepository.findAllByUserId(userId);
 
-        if (todos.isEmpty()) {
-            throw new TodoNotFoundException(String.format("No todos found for user with ID %s", userId));
-        }
-
         return todos.stream()
                 .map(todo -> new TodoResponseDTO(
                         todo.getId(),
@@ -54,11 +49,21 @@ public class TodoService {
         return new TodoResponseDTO(saved.getId(), saved.getTitle(), saved.isCompleted(), saved.getUser().getName());
     }
 
-    public Todo updateTodo(UUID id, UpdateTodoDTO dto) {
+    public Todo updateTodoTitle(UUID id, String title) {
         Todo todo = todoRepository.findById(id)
                 .orElseThrow(() -> new TodoNotFoundException(String.format("No todo found with ID %s", id)));
-        todo.setTitle(dto.title());
-        todo.setCompleted(dto.completed());
+        todo.setTitle(title);
         return todoRepository.save(todo);
+    }
+
+    public Todo updateTodoComplete(UUID id, boolean completed) {
+        Todo todo = todoRepository.findById(id)
+                .orElseThrow(() -> new TodoNotFoundException(String.format("No todo found with ID %s", id)));
+        todo.setCompleted(completed);
+        return todoRepository.save(todo);
+    }
+
+    public void deleteTodo(UUID id) {
+        todoRepository.deleteById(id);
     }
 }
