@@ -6,10 +6,19 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Todo } from '../../models/Todo';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
 import { TodoService } from '../../todo.service';
+import { InputComponent } from '../../components/input/input.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-todo-list',
-  imports: [CommonModule, FormsModule, FontAwesomeModule, TodoItemComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    FontAwesomeModule,
+    TodoItemComponent,
+    InputComponent,
+    NavbarComponent,
+  ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css',
 })

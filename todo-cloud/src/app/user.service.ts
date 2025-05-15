@@ -24,4 +24,21 @@ export class UserService {
         this.router.navigate(['/todos']);
       });
   }
+
+  updateUserName(name: string) {
+    if (!name.trim()) {
+      window.alert('Please enter a name');
+      return;
+    }
+
+    this.http
+      .patch<{ id: string; name: string }>(
+        `http://localhost:8080/user/update/${localStorage.getItem('userId')}`,
+        { newName: name }
+      )
+      .subscribe((user) => {
+        localStorage.setItem('userName', user.name);
+        location.reload();
+      });
+  }
 }

@@ -1,6 +1,7 @@
 package com.scottlogic.cloud_training.services;
 
 import com.scottlogic.cloud_training.dtos.CreateUserDTO;
+import com.scottlogic.cloud_training.dtos.UpdateUserDTO;
 import com.scottlogic.cloud_training.entities.User;
 import com.scottlogic.cloud_training.exceptions.UserNotFoundException;
 import com.scottlogic.cloud_training.repositories.UserRepository;
@@ -30,5 +31,11 @@ public class UserService {
 
     public User findUser(UUID userId) {
         return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId.toString()));
+    }
+
+    public User updateName(UUID userId, UpdateUserDTO dto) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        user.setName(dto.newName());
+        return userRepository.save(user);
     }
 }

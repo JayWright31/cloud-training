@@ -1,16 +1,16 @@
 <div class="container">
-  <h1>{{ userName }}'s Todos</h1>
-  <div class="card">
-    <div class="card-header">
-      <label>Create a new todo</label>
-    </div>
-    <div class="input-row">
-      <input [(ngModel)]="todoTitle" type="text" placeholder="Add your todo" />
-      <button (click)="addTodo()">
-        <fa-icon [icon]="faPlus"></fa-icon>
-      </button>
-    </div>
+  <div class="header">
+    <app-navbar></app-navbar>
+    <h1>{{ userName }}'s Todos</h1>
   </div>
+
+  <app-input
+    [label]="'Create todo'"
+    [placeholder]="'click here'"
+    [(model)]="todoTitle"
+    (submit)="addTodo()"
+  >
+  </app-input>
 
   <div class="todo-list">
     <app-todo-item

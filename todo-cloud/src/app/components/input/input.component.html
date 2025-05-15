@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header">
+    <label>{{ label }}</label>
+  </div>
+  <div class="input-row">
+    <input
+      [value]="model"
+      (input)="handleInputChange($event)"
+      type="text"
+      [placeholder]="placeholder"
+    />
+    <button (click)="handleClick()">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+  </div>
+</div>

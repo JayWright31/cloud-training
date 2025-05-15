@@ -28,11 +28,6 @@ public class TodoController {
         return new ResponseEntity<>(todoService.getUserTodos(userId), HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Todo>> getAllTodos() {
-        return new ResponseEntity<>(todoService.getAllTodos(), HttpStatus.OK);
-    }
-
     @PostMapping
     public ResponseEntity<TodoResponseDTO> createTodo(@RequestBody CreateTodoDTO dto) {
         return new ResponseEntity<>(todoService.createTodo(dto), HttpStatus.CREATED);

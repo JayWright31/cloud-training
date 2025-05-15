@@ -36,10 +36,6 @@ public class TodoService {
                 .toList();
     }
 
-    public List<Todo> getAllTodos() {
-        return todoRepository.findAll();
-    }
-
     public TodoResponseDTO createTodo(CreateTodoDTO dto) {
         User user = userService.findUser(dto.userId());
         Todo todo = new Todo();

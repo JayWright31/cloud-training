@@ -60,6 +60,7 @@ button {
   border-radius: 7px;
   cursor: pointer;
   font-size: 1rem;
+  transition: 0.3s;
 }
 
 button:hover {
@@ -70,4 +71,12 @@ button:hover {
 .todo-list {
   min-width: 50%;
   margin-top: 1rem;
+}
+
+app-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }

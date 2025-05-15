@@ -1,14 +1,10 @@
 <div class="container">
   <h1>Todo or not todo</h1>
-  <div class="card">
-    <div class="card-header">
-      <label>Create user</label>
-    </div>
-    <div class="input-row">
-      <input [(ngModel)]="name" type="text" placeholder="Enter your name" />
-      <button (click)="createUser()">
-        <fa-icon [icon]="faPlus"></fa-icon>
-      </button>
-    </div>
-  </div>
+  <app-input
+    [label]="'Enter your name'"
+    [placeholder]="'click here'"
+    [(model)]="name"
+    (submit)="createUser()"
+  >
+  </app-input>
 </div>
