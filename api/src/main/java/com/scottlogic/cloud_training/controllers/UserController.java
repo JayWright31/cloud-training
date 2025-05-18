@@ -5,9 +5,11 @@ import com.scottlogic.cloud_training.dtos.UpdateUserDTO;
 import com.scottlogic.cloud_training.entities.User;
 import com.scottlogic.cloud_training.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.UUID;
 
