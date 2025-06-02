@@ -5,7 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Todo } from '../../models/Todo';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
-import { TodoService } from '../../todo.service';
+import { TodoService } from '../../services/todo.service';
 import { InputComponent } from '../../components/input/input.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 

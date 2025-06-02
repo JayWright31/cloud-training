@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Todo } from './models/Todo';
+import { Todo } from '../models/Todo';
 import { Observable, of } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private api: ApiService, private router: Router) {}
 
   createTodo(title: string): Observable<Todo> {
     const userId = localStorage.getItem('userId');
@@ -17,7 +17,7 @@ export class TodoService {
       return of();
     }
 
-    return this.http.post<Todo>('http://localhost:8080/todo', {
+    return this.api.post<Todo>('/todo', {
       title,
       userId,
     });
@@ -30,26 +30,24 @@ export class TodoService {
       return of([]);
     }
 
-    return this.http.get<Todo[]>(`http://localhost:8080/todo/user/${userId}`);
+    return this.api.get<Todo[]>(`/todo/user/${userId}`);
   }
 
   updateTodoTitle(todoId: string, newTitle: string): Observable<Todo> {
-    return this.http.patch<Todo>(
-      `http://localhost:8080/todo/${todoId}`,
+    return this.api.patch<Todo>(
+      `/todo/${todoId}`,
       null, // No body, only query param
       { params: { title: newTitle } }
     );
   }
 
   toggleTodoComplete(todoId: string, completed: boolean): Observable<Todo> {
-    return this.http.patch<Todo>(
-      `http://localhost:8080/todo/complete/${todoId}`,
-      null,
-      { params: { complete: completed.toString() } }
-    );
+    return this.api.patch<Todo>(`/todo/complete/${todoId}`, null, {
+      params: { complete: completed.toString() },
+    });
   }
 
   deleteTodo(todoId: string): Observable<void> {
-    return this.http.delete<void>(`http://localhost:8080/todo/${todoId}`);
+    return this.api.delete<void>(`/todo/${todoId}`);
   }
 }

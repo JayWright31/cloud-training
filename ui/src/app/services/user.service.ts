@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private api: ApiService, private router: Router) {}
 
   createUser(name: string) {
     if (!name.trim()) {
@@ -14,10 +14,8 @@ export class UserService {
       return;
     }
 
-    this.http
-      .post<{ id: string; name: string }>('http://localhost:8080/user', {
-        userName: name,
-      })
+    this.api
+      .post<{ id: string; name: string }>('/user', { userName: name.trim() })
       .subscribe((user) => {
         localStorage.setItem('userId', user.id);
         localStorage.setItem('userName', user.name);
@@ -31,11 +29,12 @@ export class UserService {
       return;
     }
 
-    this.http
-      .patch<{ id: string; name: string }>(
-        `http://localhost:8080/user/update/${localStorage.getItem('userId')}`,
-        { newName: name }
-      )
+    const userId = localStorage.getItem('userId');
+
+    this.api
+      .patch<{ id: string; name: string }>(`/user/update/${userId}`, {
+        newName: name,
+      })
       .subscribe((user) => {
         localStorage.setItem('userName', user.name);
         location.reload();
