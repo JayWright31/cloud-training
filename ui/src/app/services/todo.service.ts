@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Todo } from '../models/Todo';
 import { Observable, of } from 'rxjs';
 import { ApiService } from './api.service';
@@ -8,7 +7,7 @@ import { ApiService } from './api.service';
   providedIn: 'root',
 })
 export class TodoService {
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(private api: ApiService) {}
 
   createTodo(title: string): Observable<Todo> {
     const userId = localStorage.getItem('userId');
