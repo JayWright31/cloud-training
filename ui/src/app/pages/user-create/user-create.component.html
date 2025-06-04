@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Todo or not todo</h1>
+  <app-input
+    [label]="'Enter your name'"
+    [placeholder]="'click here'"
+    [(model)]="name"
+    (submit)="createUser()"
+  >
+  </app-input>
+</div>

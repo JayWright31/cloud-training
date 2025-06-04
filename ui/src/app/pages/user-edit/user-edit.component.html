@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="header">
+    <app-navbar></app-navbar>
+    <h1>Hello {{ oldName }}</h1>
+  </div>
+
+  <app-input
+    [label]="'New name'"
+    [placeholder]="'click here'"
+    [(model)]="userName"
+    (submit)="updateUserName()"
+  >
+  </app-input>
+</div>

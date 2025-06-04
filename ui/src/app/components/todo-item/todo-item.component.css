@@ -1,0 +1,79 @@
+.todo-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-description {
+  font-size: 1.5rem;
+  font-weight: 300;
+  width: 100%;
+}
+.todo-description.completed {
+  text-decoration: line-through;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.icon {
+  font-size: 1rem;
+  border-radius: 7px;
+  background: transparent;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.green {
+  border: 2px solid #39ce3c;
+  color: #39ce3c;
+}
+.green:hover {
+  background-color: #39ce3c;
+  color: white;
+}
+
+.yellow {
+  border: 2px solid #d5c14d;
+  color: #d5c14d;
+}
+.yellow:hover {
+  background-color: #d5c14d;
+  color: white;
+}
+
+.red {
+  border: 2px solid #e24040;
+  color: #e24040;
+}
+.red:hover {
+  background-color: #e24040;
+  color: white;
+}
+
+.blue {
+  border: 2px solid#475db7;
+  color: #475db7;
+}
+.blue:hover {
+  background-color: #475db7;
+  color: white;
+}
+
+input {
+  flex: 1;
+  border-radius: 10px;
+  border: 1px solid #bbbbbb;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 95%;
+}

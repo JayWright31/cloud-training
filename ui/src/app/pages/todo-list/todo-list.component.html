@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="header">
+    <app-navbar></app-navbar>
+    <h1>{{ userName }}'s Todos</h1>
+  </div>
+
+  <app-input
+    [label]="'Create todo'"
+    [placeholder]="'click here'"
+    [(model)]="todoTitle"
+    (submit)="addTodo()"
+  >
+  </app-input>
+
+  <div class="todo-list">
+    <app-todo-item
+      *ngFor="let todo of todos"
+      [todo]="todo"
+      (completeToggled)="handleToggleComplete($event)"
+      (editSubmitted)="handleEdit($event)"
+      (deleteClicked)="handleDelete($event)"
+    >
+    </app-todo-item>
+  </div>
+</div>
